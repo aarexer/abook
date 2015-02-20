@@ -1,10 +1,12 @@
 package com.github.aarexer.address.model;
 
 
+import com.github.aarexer.address.util.DateAdapter;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 public class Person
@@ -48,6 +50,7 @@ public class Person
     {
         return street.getValue();
     }
+    @XmlJavaTypeAdapter(DateAdapter.class)
     public LocalDate getBirthday()
     {
         return birthday.getValue();

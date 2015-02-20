@@ -1,7 +1,9 @@
 package com.github.aarexer.address;
 
 import com.github.aarexer.address.model.Person;
+import com.github.aarexer.address.model.PersonDataWrapper;
 import com.github.aarexer.address.view.ErrorController;
+import com.github.aarexer.address.view.MainAppController;
 import com.github.aarexer.address.view.PersonController;
 import com.github.aarexer.address.view.PersonEditDialogController;
 import javafx.application.Application;
@@ -9,12 +11,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 public class MainApp extends Application
 {
@@ -56,12 +65,21 @@ public class MainApp extends Application
             rootLayout = fxmlLoader.load();
             Scene scene = new Scene(rootLayout);
 
+            MainAppController controller = fxmlLoader.getController();
+            controller.setMainiApp(this);
+
             primaryStage.setScene(scene);
+            primaryStage.getIcons().add(new Image("file:resources/images/abook.png"));
+
             primaryStage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        File file = getPersonPath();
+        if (file != null)
+            loadDataFromFile(file);
     }
 
     public void showPersonOverview()
@@ -148,5 +166,74 @@ public class MainApp extends Application
     public static void main(String[] args)
     {
         launch();
+    }
+
+    public File getPersonPath()
+    {
+        Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
+        String filepath = preferences.get("filepath", null);
+        if (filepath != null)
+        {
+            return new File(filepath);
+        }
+        else
+            return null;
+    }
+
+    public void setPersonPath(File file)
+    {
+        Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
+        if (file != null)
+        {
+            preferences.put("filepath", file.getPath());
+            primaryStage.setTitle("AddressBook " + file.getName());
+        }
+        else
+        {
+            preferences.remove("filepath");
+            primaryStage.setTitle("Addressbook");
+        }
+    }
+
+    public void loadPersonDataToFile(File file)
+    {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(PersonDataWrapper.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            PersonDataWrapper personDataWrapper = new PersonDataWrapper();
+            personDataWrapper.setPersons(personData);
+
+            marshaller.marshal(personDataWrapper, file);
+
+            setPersonPath(file);
+
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadDataFromFile(File file)
+    {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(PersonDataWrapper.class);
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
+            PersonDataWrapper personDataWrapper = (PersonDataWrapper) unmarshaller.unmarshal(file);
+            personData.clear();
+            personData.addAll(personDataWrapper.getPersons());
+
+            setPersonPath(file);
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Stage getPrimaryStage()
+    {
+        return primaryStage;
     }
 }

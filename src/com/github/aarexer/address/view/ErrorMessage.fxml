@@ -4,9 +4,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.aarexer.address.view.ErrorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="321.0" styleClass="background" stylesheets="@Dark.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.aarexer.address.view.ErrorController">
    <children>
-      <Button fx:id="dialogButton" layoutX="224.0" layoutY="111.0" mnemonicParsing="false" onAction="#buttonClicked" text="Button" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-      <Label fx:id="messageLabel" layoutX="15.0" layoutY="68.0" text="Label" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <Button fx:id="dialogButton" defaultButton="true" layoutX="224.0" layoutY="111.0" mnemonicParsing="false" onAction="#buttonClicked" text="Button" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+      <Label fx:id="messageLabel" layoutX="15.0" layoutY="31.0" styleClass="label-bright" text="Label" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="40.0" />
    </children>
 </AnchorPane>
