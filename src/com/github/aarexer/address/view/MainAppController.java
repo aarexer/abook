@@ -61,7 +61,7 @@ public class MainAppController implements Initializable
     {
         File file = mainiApp.getPersonPath();
         if (file != null)
-            mainiApp.loadPersonDataToFile(file);
+            mainiApp.saveDataToFile(file);
         else
             saveAS();
 
@@ -82,8 +82,13 @@ public class MainAppController implements Initializable
             {
                 file = new File(file.getPath() + ".xml");
             }
-            mainiApp.loadPersonDataToFile(file);
+            mainiApp.saveDataToFile(file);
         }
+    }
 
+    @FXML
+    private void showStatistic()
+    {
+        mainiApp.showStatisticBar();
     }
 }

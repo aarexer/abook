@@ -2,10 +2,7 @@ package com.github.aarexer.address;
 
 import com.github.aarexer.address.model.Person;
 import com.github.aarexer.address.model.PersonDataWrapper;
-import com.github.aarexer.address.view.ErrorController;
-import com.github.aarexer.address.view.MainAppController;
-import com.github.aarexer.address.view.PersonController;
-import com.github.aarexer.address.view.PersonEditDialogController;
+import com.github.aarexer.address.view.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -195,7 +192,7 @@ public class MainApp extends Application
         }
     }
 
-    public void loadPersonDataToFile(File file)
+    public void saveDataToFile(File file)
     {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(PersonDataWrapper.class);
@@ -235,5 +232,29 @@ public class MainApp extends Application
     public Stage getPrimaryStage()
     {
         return primaryStage;
+    }
+
+    public void showStatisticBar()
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/StatisticBar.fxml"));
+            AnchorPane statBarPane = loader.load();
+            StatisticBarController statBarController = loader.getController();
+            statBarController.setMainApp(this);
+            statBarController.setDatatoChart(personData);
+            Scene scene = new Scene(statBarPane);
+
+            Stage statStage = new Stage();
+
+            statStage.initOwner(primaryStage);
+            statStage.setScene(scene);
+            statStage.setTitle("Статистика!");
+            statStage.initModality(Modality.WINDOW_MODAL);
+            statStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
