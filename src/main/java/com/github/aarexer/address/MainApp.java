@@ -60,7 +60,7 @@ public class MainApp extends Application {
             controller.setMainiApp(this);
 
             primaryStage.setScene(scene);
-            primaryStage.getIcons().add(new Image("file:resources/images/abook.png"));
+            primaryStage.getIcons().add(new Image("/images/abook.png"));
 
             primaryStage.show();
 
