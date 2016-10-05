@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PersonEditDialogController implements Initializable
-{
+public class PersonEditDialogController implements Initializable {
     private Stage stage;
     private Person person;
     private MainApp mainApp;
@@ -38,11 +37,10 @@ public class PersonEditDialogController implements Initializable
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
     @FXML
-    private void okClicked()
-    {
-        if (isValid())
-        {
+    private void okClicked() {
+        if (isValid()) {
             person.setBirthday(DateUtil.parse(birthdayField.getText()));
             person.setName(firstnameField.getText());
             person.setSurname(lastnameField.getText());
@@ -52,13 +50,12 @@ public class PersonEditDialogController implements Initializable
             stage.close();
         }
     }
-    public boolean getOkClicked()
-    {
+
+    public boolean getOkClicked() {
         return okClicked;
     }
 
-    private boolean isValid()
-    {
+    private boolean isValid() {
         String errorMsg = "";
         if (firstnameField.getText().length() == 0 || firstnameField.getText() == null)
             errorMsg += "Нет имени! ";
@@ -72,12 +69,9 @@ public class PersonEditDialogController implements Initializable
         if (streetField.getText().length() == 0 || streetField.getText() == null)
             errorMsg += "Нет улицы! ";
 
-        if (birthdayField.getText().length() == 0 || streetField.getText() == null)
-        {
+        if (birthdayField.getText().length() == 0 || streetField.getText() == null) {
             errorMsg += "Нет даты! ";
-        }
-        else
-        {
+        } else {
             if (!DateUtil.validDate(birthdayField.getText()))
                 errorMsg += "Ошибка ввода даты!";
         }
@@ -89,13 +83,11 @@ public class PersonEditDialogController implements Initializable
     }
 
     @FXML
-    private void cancelClicked()
-    {
+    private void cancelClicked() {
         stage.close();
     }
 
-    public void setPerson(Person person)
-    {
+    public void setPerson(Person person) {
         this.person = person;
         firstnameField.setText(person.getName());
         lastnameField.setText(person.getSurname());
@@ -104,13 +96,11 @@ public class PersonEditDialogController implements Initializable
         birthdayField.setText(DateUtil.format(person.getBirthday()));
     }
 
-    public void setStage(Stage stage)
-    {
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
 
-    public void setMainApp(MainApp mainApp)
-    {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 

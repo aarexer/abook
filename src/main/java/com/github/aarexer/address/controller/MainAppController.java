@@ -10,8 +10,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainAppController implements Initializable
-{
+public class MainAppController implements Initializable {
 
     private MainApp mainiApp;
 
@@ -21,26 +20,22 @@ public class MainAppController implements Initializable
     }
 
     @FXML
-    private void exitButton()
-    {
+    private void exitButton() {
         Platform.exit();
     }
 
-    public void setMainiApp(MainApp app)
-    {
+    public void setMainiApp(MainApp app) {
         mainiApp = app;
     }
 
     @FXML
-    private void newButton()
-    {
+    private void newButton() {
         mainiApp.getPersonData().clear();
         mainiApp.setPersonPath(null);
     }
 
     @FXML
-    private void loadButton()
-    {
+    private void loadButton() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         fileChooser.getExtensionFilters().addAll(extensionFilter);
@@ -52,8 +47,7 @@ public class MainAppController implements Initializable
     }
 
     @FXML
-    private void saveButton()
-    {
+    private void saveButton() {
         File file = mainiApp.getPersonPath();
         if (file != null)
             mainiApp.saveDataToFile(file);
@@ -62,8 +56,7 @@ public class MainAppController implements Initializable
 
     }
 
-    private void saveAS()
-    {
+    private void saveAS() {
         FileChooser fileChooser = new FileChooser();
 
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
@@ -71,10 +64,8 @@ public class MainAppController implements Initializable
 
         File file = fileChooser.showOpenDialog(mainiApp.getPrimaryStage());
 
-        if (file != null)
-        {
-            if (!file.getPath().endsWith(".xml"))
-            {
+        if (file != null) {
+            if (!file.getPath().endsWith(".xml")) {
                 file = new File(file.getPath() + ".xml");
             }
             mainiApp.saveDataToFile(file);
@@ -82,8 +73,7 @@ public class MainAppController implements Initializable
     }
 
     @FXML
-    private void showStatistic()
-    {
+    private void showStatistic() {
         mainiApp.showStatisticBar();
     }
 }

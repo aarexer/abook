@@ -12,8 +12,7 @@ import javafx.scene.control.TableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PersonController implements Initializable
-{
+public class PersonController implements Initializable {
     private MainApp mainApp;
 
     @FXML
@@ -42,29 +41,24 @@ public class PersonController implements Initializable
 
 
     @FXML
-    private void handleDeleteButton()
-    {
+    private void handleDeleteButton() {
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0)
-        {
+        if (selectedIndex >= 0) {
             tableView.getItems().remove(selectedIndex);
-        }
-        else {
+        } else {
             mainApp.showError("Нет доступной записи!");
         }
     }
 
     @FXML
-    private void handleNewButton()
-    {
+    private void handleNewButton() {
         Person person = new Person();
         if (mainApp.showEditDialog(person))
             mainApp.getPersonData().add(person);
     }
 
     @FXML
-    private void handleEditButton()
-    {
+    private void handleEditButton() {
         Person person = tableView.getSelectionModel().selectedItemProperty().get();
 
         if (person == null)
@@ -75,34 +69,28 @@ public class PersonController implements Initializable
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
+    public void initialize(URL location, ResourceBundle resources) {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
 
         showPersonDetails(null);
 
-        tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->showPersonDetails(newValue));
+        tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showPersonDetails(newValue));
     }
 
-    public void setMainApp(MainApp mainApp)
-    {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         tableView.setItems(mainApp.getPersonData());
     }
 
-    public void showPersonDetails(Person person)
-    {
-        if (person != null)
-        {
+    public void showPersonDetails(Person person) {
+        if (person != null) {
             firstNameLabel.setText(person.getName());
             lastNameLabel.setText(person.getSurname());
             cityLabel.setText(person.getCity());
             streetLabel.setText(person.getStreet());
             birthdayLabel.setText(DateUtil.format(person.getBirthday()));
-        }
-        else
-        {
+        } else {
             firstNameLabel.setText("");
             lastNameLabel.setText("");
             cityLabel.setText("");

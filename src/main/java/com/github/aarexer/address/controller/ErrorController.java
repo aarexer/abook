@@ -9,8 +9,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ErrorController implements Initializable
-{
+public class ErrorController implements Initializable {
 
     private Stage stage;
 
@@ -25,19 +24,16 @@ public class ErrorController implements Initializable
         dialogButton.setText("Ok");
     }
 
-    public void setDialogWindow(Stage stage)
-    {
+    public void setDialogWindow(Stage stage) {
         this.stage = stage;
     }
 
     @FXML
-    private void buttonClicked()
-    {
+    private void buttonClicked() {
         stage.close();
     }
 
-    public void setMessageLabel(String message)
-    {
+    public void setMessageLabel(String message) {
         messageLabel.setText(message);
     }
 }

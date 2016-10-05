@@ -16,8 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class StatisticBarController implements Initializable
-{
+public class StatisticBarController implements Initializable {
     private MainApp mainApp;
 
     @FXML
@@ -37,27 +36,23 @@ public class StatisticBarController implements Initializable
         xAxis.setCategories(months);
     }
 
-    public void setDatatoChart(List<Person> persons)
-    {
+    public void setDatatoChart(List<Person> persons) {
         int[] monthCount = new int[12];
-        for (Person p : persons)
-        {
+        for (Person p : persons) {
             int m = p.getBirthday().getMonthValue() - 1;
             monthCount[m]++;
         }
 
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
-        for (int i = 0; i < monthCount.length; i++)
-        {
+        for (int i = 0; i < monthCount.length; i++) {
             series.getData().add(new XYChart.Data<>(months.get(i), monthCount[i]));
         }
 
         barChart.getData().add(series);
     }
 
-    public void setMainApp(MainApp mainApp)
-    {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
