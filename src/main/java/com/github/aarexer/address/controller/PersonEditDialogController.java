@@ -1,4 +1,4 @@
-package com.github.aarexer.address.view;
+package com.github.aarexer.address.controller;
 
 import com.github.aarexer.address.MainApp;
 import com.github.aarexer.address.model.Person;

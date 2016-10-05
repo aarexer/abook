@@ -1,4 +1,4 @@
-package com.github.aarexer.address.view;
+package com.github.aarexer.address.controller;
 
 import com.github.aarexer.address.MainApp;
 import com.github.aarexer.address.model.Person;
@@ -15,11 +15,6 @@ import java.text.DateFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-/**
- * Created by rexer on 23.02.15.
- */
-
 
 public class StatisticBarController implements Initializable
 {

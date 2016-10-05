@@ -1,4 +1,4 @@
-package com.github.aarexer.address.view;
+package com.github.aarexer.address.controller;
 
 import com.github.aarexer.address.MainApp;
 import javafx.application.Platform;
@@ -9,11 +9,6 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-/**
- * Created by rexer on 20.02.15.
- */
-
 
 public class MainAppController implements Initializable
 {

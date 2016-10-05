@@ -1,8 +1,8 @@
 package com.github.aarexer.address;
 
+import com.github.aarexer.address.controller.*;
 import com.github.aarexer.address.model.Person;
 import com.github.aarexer.address.model.PersonDataWrapper;
-import com.github.aarexer.address.view.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

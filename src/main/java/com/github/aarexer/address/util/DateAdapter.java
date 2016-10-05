@@ -3,10 +3,6 @@ package com.github.aarexer.address.util;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDate;
 
-/**
- * Created by rexer on 20.02.15.
- */
-
 public class DateAdapter extends XmlAdapter<String, LocalDate>
 {
 

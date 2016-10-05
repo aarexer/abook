@@ -1,4 +1,4 @@
-package com.github.aarexer.address.view;
+package com.github.aarexer.address.controller;
 
 import com.github.aarexer.address.MainApp;
 import com.github.aarexer.address.model.Person;
@@ -11,11 +11,6 @@ import javafx.scene.control.TableView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-/**
- * Created by rexer on 14.02.15.
- */
-
 
 public class PersonController implements Initializable
 {
