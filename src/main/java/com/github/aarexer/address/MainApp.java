@@ -22,16 +22,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.prefs.Preferences;
 
-public class MainApp extends Application
-{
-
+public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
 
-    public MainApp()
-    {
+    public MainApp() {
         personData.add(new Person("Кучук", "Александр"));
         personData.add(new Person("Шеин", "Артем"));
         personData.add(new Person("Романов", "Роман"));
@@ -49,16 +46,13 @@ public class MainApp extends Application
         this.primaryStage.setTitle("Address Book");
 
         initRootlayout();
-
         showPersonOverview();
-
     }
 
-    public void initRootlayout()
-    {
+    public void initRootlayout() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
+            fxmlLoader.setLocation(MainApp.class.getResource("/view/RootLayout.fxml"));
             rootLayout = fxmlLoader.load();
             Scene scene = new Scene(rootLayout);
 
@@ -79,11 +73,10 @@ public class MainApp extends Application
             loadDataFromFile(file);
     }
 
-    public void showPersonOverview()
-    {
+    public void showPersonOverview() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(MainApp.class.getResource("view/PersonOverview.fxml"));
+            fxmlLoader.setLocation(MainApp.class.getResource("/view/PersonOverview.fxml"));
             AnchorPane personOverview = fxmlLoader.load();
 
             rootLayout.setCenter(personOverview);
@@ -96,11 +89,10 @@ public class MainApp extends Application
         }
     }
 
-    public void showError(String msg)
-    {
+    public void showError(String msg) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/ErrorMessage.fxml"));
+            loader.setLocation(MainApp.class.getResource("/view/ErrorMessage.fxml"));
             AnchorPane errorMsg = loader.load();
             ErrorController errorController = loader.getController();
 
@@ -124,11 +116,11 @@ public class MainApp extends Application
             e.printStackTrace();
         }
     }
-    public boolean showEditDialog(Person person)
-    {
+
+    public boolean showEditDialog(Person person) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/PersonEditDialog.fxml"));
+            loader.setLocation(MainApp.class.getResource("/view/PersonEditDialog.fxml"));
 
             AnchorPane editDialog = loader.load();
             Scene scene = new Scene(editDialog);
@@ -155,45 +147,35 @@ public class MainApp extends Application
         return false;
     }
 
-    public ObservableList<Person> getPersonData()
-    {
+    public ObservableList<Person> getPersonData() {
         return personData;
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         launch();
     }
 
-    public File getPersonPath()
-    {
+    public File getPersonPath() {
         Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
         String filepath = preferences.get("filepath", null);
-        if (filepath != null)
-        {
+        if (filepath != null) {
             return new File(filepath);
-        }
-        else
+        } else
             return null;
     }
 
-    public void setPersonPath(File file)
-    {
+    public void setPersonPath(File file) {
         Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
-        if (file != null)
-        {
+        if (file != null) {
             preferences.put("filepath", file.getPath());
             primaryStage.setTitle("AddressBook " + file.getName());
-        }
-        else
-        {
+        } else {
             preferences.remove("filepath");
             primaryStage.setTitle("Addressbook");
         }
     }
 
-    public void saveDataToFile(File file)
-    {
+    public void saveDataToFile(File file) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(PersonDataWrapper.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
@@ -212,8 +194,7 @@ public class MainApp extends Application
         }
     }
 
-    public void loadDataFromFile(File file)
-    {
+    public void loadDataFromFile(File file) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(PersonDataWrapper.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -229,16 +210,14 @@ public class MainApp extends Application
         }
     }
 
-    public Stage getPrimaryStage()
-    {
+    public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    public void showStatisticBar()
-    {
+    public void showStatisticBar() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/StatisticBar.fxml"));
+            loader.setLocation(MainApp.class.getResource("/view/StatisticBar.fxml"));
             AnchorPane statBarPane = loader.load();
             StatisticBarController statBarController = loader.getController();
             statBarController.setMainApp(this);
