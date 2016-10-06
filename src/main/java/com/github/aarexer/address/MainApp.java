@@ -40,8 +40,10 @@ public class MainApp extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Address Book");
 
+        logger.info("Starting application...");
         initRootLayout();
         showPersonOverview();
+        logger.info("Application started.");
     }
 
     private void initRootLayout() {
@@ -60,7 +62,8 @@ public class MainApp extends Application {
             primaryStage.show();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Can't load resource {}, cause: {}!", "/view/RootLayout.fxml", e);
+            throw new RuntimeException("Error while loading resource.", e);
         }
 
         File file = getPersonPath();
@@ -92,7 +95,6 @@ public class MainApp extends Application {
             ErrorController errorController = loader.getController();
 
             errorController.setMessageLabel(msg);
-
 
             Scene scene = new Scene(errorMsg);
 
@@ -155,8 +157,9 @@ public class MainApp extends Application {
         String filepath = preferences.get("filepath", null);
         if (filepath != null) {
             return new File(filepath);
-        } else
+        } else {
             return null;
+        }
     }
 
     public void setPersonPath(File file) {
@@ -182,8 +185,6 @@ public class MainApp extends Application {
             marshaller.marshal(personDataWrapper, file);
 
             setPersonPath(file);
-
-
         } catch (JAXBException e) {
             e.printStackTrace();
         }
