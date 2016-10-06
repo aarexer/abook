@@ -56,30 +56,21 @@ public class PersonEditDialogController implements Initializable {
     }
 
     private boolean isValid() {
-        String errorMsg = "";
-        if (firstnameField.getText().length() == 0 || firstnameField.getText() == null)
-            errorMsg += "Нет имени! ";
+        String firstName = firstnameField.getText();
+        String lastName = lastnameField.getText();
+        String city = cityField.getText();
+        String street = streetField.getText();
+        String birthday = birthdayField.getText();
 
-        if (lastnameField.getText().length() == 0 || lastnameField.getText() == null)
-            errorMsg += "Нет фамилии! ";
+        return !(isEmptyOrNull(firstName) ||
+                isEmptyOrNull(lastName) ||
+                isEmptyOrNull(city) ||
+                isEmptyOrNull(street) ||
+                isEmptyOrNull(birthday)) && DateUtil.validDate(birthday);
+    }
 
-        if (cityField.getText().length() == 0 || cityField.getText() == null)
-            errorMsg += "Нет города! ";
-
-        if (streetField.getText().length() == 0 || streetField.getText() == null)
-            errorMsg += "Нет улицы! ";
-
-        if (birthdayField.getText().length() == 0 || streetField.getText() == null) {
-            errorMsg += "Нет даты! ";
-        } else {
-            if (!DateUtil.validDate(birthdayField.getText()))
-                errorMsg += "Ошибка ввода даты!";
-        }
-
-        if (errorMsg.length() == 0)
-            return true;
-        else
-            return false;
+    private boolean isEmptyOrNull(String field) {
+        return field == null || field.trim().isEmpty();
     }
 
     public void setPerson(Person person) {
