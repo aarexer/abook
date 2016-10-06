@@ -18,9 +18,9 @@ public class PersonEditDialogController implements Initializable {
     private boolean okClicked = false;
 
     @FXML
-    private TextField firstnameField;
+    private TextField firstNameField;
     @FXML
-    private TextField lastnameField;
+    private TextField lastLameField;
     @FXML
     private TextField cityField;
     @FXML
@@ -37,8 +37,8 @@ public class PersonEditDialogController implements Initializable {
     private void okClicked() {
         if (isValid()) {
             person.setBirthday(DateUtil.parse(birthdayField.getText()));
-            person.setName(firstnameField.getText());
-            person.setSurname(lastnameField.getText());
+            person.setName(firstNameField.getText());
+            person.setSurname(lastLameField.getText());
             person.setCity(cityField.getText());
             person.setStreet(streetField.getText());
             okClicked = true;
@@ -56,8 +56,8 @@ public class PersonEditDialogController implements Initializable {
     }
 
     private boolean isValid() {
-        String firstName = firstnameField.getText();
-        String lastName = lastnameField.getText();
+        String firstName = firstNameField.getText();
+        String lastName = lastLameField.getText();
         String city = cityField.getText();
         String street = streetField.getText();
         String birthday = birthdayField.getText();
@@ -75,8 +75,8 @@ public class PersonEditDialogController implements Initializable {
 
     public void setPerson(Person person) {
         this.person = person;
-        firstnameField.setText(person.getName());
-        lastnameField.setText(person.getSurname());
+        firstNameField.setText(person.getName());
+        lastLameField.setText(person.getSurname());
         cityField.setText(person.getCity());
         streetField.setText(person.getStreet());
         birthdayField.setText(DateUtil.format(person.getBirthday()));
