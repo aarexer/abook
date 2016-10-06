@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.input.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@Dark.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.aarexer.address.controller.MainAppController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#newButton" text="New">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#loadButton" text="Load">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#saveButton" text="Save">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-              <MenuItem mnemonicParsing="false" onAction="#exitButton" text="Close">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#showStatistic" text="Statistic Bar">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0"
+            prefWidth="1024.0" stylesheets="@Dark.css" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.aarexer.address.controller.MainAppController">
+    <!--Application menu-->
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#newButton" text="New">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#loadButton" text="Load">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#saveButton" text="Save">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#exitButton" text="Close">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showStatistic" text="Statistic Bar">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
 </BorderPane>
