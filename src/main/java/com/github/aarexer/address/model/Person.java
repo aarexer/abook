@@ -4,11 +4,15 @@ import com.github.aarexer.address.util.DateAdapter;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 public class Person {
+    private static final Logger logger = LogManager.getLogger();
+
     private SimpleStringProperty name;
     private SimpleStringProperty surname;
     private SimpleStringProperty city;
@@ -22,7 +26,7 @@ public class Person {
     public Person(String name, String surname) {
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);
-        this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1990, 12, 20));
+        this.birthday = new SimpleObjectProperty<>(LocalDate.of(1990, 12, 20));
         this.street = new SimpleStringProperty("Pervomayskaya");
         this.city = new SimpleStringProperty("Dolgoprudny");
     }

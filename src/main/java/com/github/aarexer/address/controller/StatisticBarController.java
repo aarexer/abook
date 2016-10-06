@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.text.DateFormatSymbols;
@@ -17,16 +19,14 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class StatisticBarController implements Initializable {
+    private static final Logger logger = LogManager.getLogger();
+
     private MainApp mainApp;
-
     @FXML
-    BarChart<String, Integer> barChart;
-
+    private BarChart<String, Integer> barChart;
     @FXML
-    CategoryAxis xAxis;
-
+    private CategoryAxis xAxis;
     private ObservableList<String> months = FXCollections.observableArrayList();
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

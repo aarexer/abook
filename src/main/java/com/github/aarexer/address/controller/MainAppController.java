@@ -5,18 +5,20 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.FileChooser;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainAppController implements Initializable {
+    private static final Logger logger = LogManager.getLogger();
 
-    private MainApp mainiApp;
+    private MainApp mainApp;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     @FXML
@@ -24,14 +26,10 @@ public class MainAppController implements Initializable {
         Platform.exit();
     }
 
-    public void setMainiApp(MainApp app) {
-        mainiApp = app;
-    }
-
     @FXML
     private void newButton() {
-        mainiApp.getPersonData().clear();
-        mainiApp.setPersonPath(null);
+        mainApp.getPersonData().clear();
+        mainApp.setPersonPath(null);
     }
 
     @FXML
@@ -40,20 +38,26 @@ public class MainAppController implements Initializable {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         fileChooser.getExtensionFilters().addAll(extensionFilter);
 
-        File file = fileChooser.showOpenDialog(mainiApp.getPrimaryStage());
+        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 
-        if (file != null)
-            mainiApp.loadDataFromFile(file);
+        if (file != null) {
+            mainApp.loadDataFromFile(file);
+        }
     }
 
     @FXML
     private void saveButton() {
-        File file = mainiApp.getPersonPath();
-        if (file != null)
-            mainiApp.saveDataToFile(file);
-        else
+        File file = mainApp.getPersonPath();
+        if (file != null) {
+            mainApp.saveDataToFile(file);
+        } else {
             saveAS();
+        }
+    }
 
+    @FXML
+    private void showStatistic() {
+        mainApp.showStatisticBar();
     }
 
     private void saveAS() {
@@ -62,18 +66,17 @@ public class MainAppController implements Initializable {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         fileChooser.getExtensionFilters().addAll(extensionFilter);
 
-        File file = fileChooser.showOpenDialog(mainiApp.getPrimaryStage());
+        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 
         if (file != null) {
             if (!file.getPath().endsWith(".xml")) {
                 file = new File(file.getPath() + ".xml");
             }
-            mainiApp.saveDataToFile(file);
+            mainApp.saveDataToFile(file);
         }
     }
 
-    @FXML
-    private void showStatistic() {
-        mainiApp.showStatisticBar();
+    public void setMainApp(MainApp app) {
+        mainApp = app;
     }
 }

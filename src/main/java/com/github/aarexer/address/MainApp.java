@@ -13,6 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -23,6 +25,8 @@ import java.io.IOException;
 import java.util.prefs.Preferences;
 
 public class MainApp extends Application {
+    private static final Logger logger = LogManager.getLogger();
+
     private Stage primaryStage;
     private BorderPane rootLayout;
 
@@ -48,7 +52,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(rootLayout);
 
             MainAppController controller = fxmlLoader.getController();
-            controller.setMainiApp(this);
+            controller.setMainApp(this);
 
             primaryStage.getIcons().add(new Image("/images/icon.png"));
             primaryStage.setScene(scene);

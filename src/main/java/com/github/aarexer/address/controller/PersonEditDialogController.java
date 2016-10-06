@@ -19,19 +19,14 @@ public class PersonEditDialogController implements Initializable {
 
     @FXML
     private TextField firstnameField;
-
     @FXML
     private TextField lastnameField;
-
     @FXML
     private TextField cityField;
-
     @FXML
     private TextField streetField;
-
     @FXML
     private TextField birthdayField;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,6 +44,11 @@ public class PersonEditDialogController implements Initializable {
             okClicked = true;
             stage.close();
         }
+    }
+
+    @FXML
+    private void cancelClicked() {
+        stage.close();
     }
 
     public boolean getOkClicked() {
@@ -80,11 +80,6 @@ public class PersonEditDialogController implements Initializable {
             return true;
         else
             return false;
-    }
-
-    @FXML
-    private void cancelClicked() {
-        stage.close();
     }
 
     public void setPerson(Person person) {

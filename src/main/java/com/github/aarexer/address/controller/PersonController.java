@@ -8,37 +8,32 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PersonController implements Initializable {
-    private MainApp mainApp;
+    private static final Logger logger = LogManager.getLogger();
 
+    private MainApp mainApp;
     @FXML
     private TableView<Person> tableView;
-
     @FXML
     private TableColumn<Person, String> firstNameColumn;
-
     @FXML
     private TableColumn<Person, String> lastNameColumn;
-
     @FXML
     private Label firstNameLabel;
-
     @FXML
     private Label lastNameLabel;
-
     @FXML
     private Label streetLabel;
-
     @FXML
     private Label cityLabel;
-
     @FXML
     private Label birthdayLabel;
-
 
     @FXML
     private void handleDeleteButton() {
@@ -83,7 +78,7 @@ public class PersonController implements Initializable {
         tableView.setItems(mainApp.getPersonData());
     }
 
-    public void showPersonDetails(Person person) {
+    private void showPersonDetails(Person person) {
         if (person != null) {
             firstNameLabel.setText(person.getName());
             lastNameLabel.setText(person.getSurname());
@@ -98,5 +93,4 @@ public class PersonController implements Initializable {
             birthdayLabel.setText("");
         }
     }
-
 }

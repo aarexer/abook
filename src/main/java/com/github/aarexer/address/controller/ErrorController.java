@@ -5,17 +5,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ErrorController implements Initializable {
+    private static final Logger logger = LogManager.getLogger();
 
     private Stage stage;
-
     @FXML
     private Label messageLabel;
-
     @FXML
     private Button dialogButton;
 
@@ -24,13 +25,13 @@ public class ErrorController implements Initializable {
         dialogButton.setText("Ok");
     }
 
-    public void setDialogWindow(Stage stage) {
-        this.stage = stage;
-    }
-
     @FXML
     private void buttonClicked() {
         stage.close();
+    }
+
+    public void setDialogWindow(Stage stage) {
+        this.stage = stage;
     }
 
     public void setMessageLabel(String message) {
