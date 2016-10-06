@@ -29,15 +29,6 @@ public class MainApp extends Application {
     private ObservableList<Person> personData = FXCollections.observableArrayList();
 
     public MainApp() {
-        personData.add(new Person("Кучук", "Александр"));
-        personData.add(new Person("Шеин", "Артем"));
-        personData.add(new Person("Романов", "Роман"));
-        personData.add(new Person("Ланкин", "Геннадий"));
-        personData.add(new Person("Терентьев", "Максим"));
-        personData.add(new Person("Тосаков", "Константин"));
-        personData.add(new Person("Пинчук", "Денис"));
-        personData.add(new Person("Тарасов", "Максим"));
-        personData.add(new Person("Скороход", "Сергей"));
     }
 
     @Override
@@ -45,11 +36,11 @@ public class MainApp extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Address Book");
 
-        initRootlayout();
+        initRootLayout();
         showPersonOverview();
     }
 
-    public void initRootlayout() {
+    private void initRootLayout() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(MainApp.class.getResource("/view/RootLayout.fxml"));
@@ -59,8 +50,8 @@ public class MainApp extends Application {
             MainAppController controller = fxmlLoader.getController();
             controller.setMainiApp(this);
 
+            primaryStage.getIcons().add(new Image("/images/icon.png"));
             primaryStage.setScene(scene);
-            primaryStage.getIcons().add(new Image("/images/abook.png"));
 
             primaryStage.show();
 
@@ -73,7 +64,7 @@ public class MainApp extends Application {
             loadDataFromFile(file);
     }
 
-    public void showPersonOverview() {
+    private void showPersonOverview() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(MainApp.class.getResource("/view/PersonOverview.fxml"));
