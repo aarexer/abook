@@ -36,7 +36,7 @@ public class StatisticBarController implements Initializable {
         xAxis.setCategories(months);
     }
 
-    public void setDatatoChart(List<Person> persons) {
+    public void setDataToChart(List<Person> persons) {
         int[] monthCount = new int[12];
         for (Person p : persons) {
             int m = p.getBirthday().getMonthValue() - 1;
