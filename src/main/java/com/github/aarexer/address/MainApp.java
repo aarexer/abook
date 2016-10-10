@@ -1,6 +1,9 @@
 package com.github.aarexer.address;
 
-import com.github.aarexer.address.controller.*;
+import com.github.aarexer.address.controller.MainAppController;
+import com.github.aarexer.address.controller.PersonController;
+import com.github.aarexer.address.controller.PersonEditDialogController;
+import com.github.aarexer.address.controller.StatisticBarController;
 import com.github.aarexer.address.model.Person;
 import com.github.aarexer.address.model.PersonDataWrapper;
 import javafx.application.Application;
@@ -42,7 +45,6 @@ public class MainApp extends Application {
 
         logger.info("Starting application...");
         initRootLayout();
-        showPersonOverview();
         logger.info("Application started.");
     }
 
@@ -66,6 +68,9 @@ public class MainApp extends Application {
             throw new RuntimeException("Error while loading resource.", e);
         }
 
+        //after init main window
+        showPersonOverview();
+
         File file = getPersonPath();
         if (file != null)
             loadDataFromFile(file);
@@ -83,34 +88,8 @@ public class MainApp extends Application {
             personController.setMainApp(this);
 
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void showError(String msg) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/view/ErrorMessage.fxml"));
-            AnchorPane errorMsg = loader.load();
-            ErrorController errorController = loader.getController();
-
-            errorController.setMessageLabel(msg);
-
-            Scene scene = new Scene(errorMsg);
-
-            Stage dialogStage = new Stage();
-
-            errorController.setDialogWindow(dialogStage);
-
-            dialogStage.setResizable(false);
-            dialogStage.initOwner(primaryStage);
-            dialogStage.setScene(scene);
-            dialogStage.setTitle("Ошибка!");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Can't load resource {}, cause: {}!", "/view/PersonOverview.fxml", e);
+            throw new RuntimeException("Error while loading resource.", e);
         }
     }
 
@@ -137,7 +116,6 @@ public class MainApp extends Application {
             editDialogStage.showAndWait();
 
             return controller.getOkClicked();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -217,7 +195,7 @@ public class MainApp extends Application {
             AnchorPane statBarPane = loader.load();
             StatisticBarController statBarController = loader.getController();
             statBarController.setMainApp(this);
-            statBarController.setDatatoChart(personData);
+            statBarController.setDataToChart(personData);
             Scene scene = new Scene(statBarPane);
 
             Stage statStage = new Stage();
