@@ -1,6 +1,5 @@
 package com.github.aarexer.address.controller;
 
-import com.github.aarexer.address.MainApp;
 import com.github.aarexer.address.model.Person;
 import com.github.aarexer.address.util.DateUtil;
 import javafx.fxml.FXML;
@@ -14,7 +13,6 @@ import java.util.ResourceBundle;
 public class PersonEditDialogController implements Initializable {
     private Stage stage;
     private Person person;
-    private MainApp mainApp;
     private boolean okClicked = false;
 
     @FXML
@@ -85,9 +83,4 @@ public class PersonEditDialogController implements Initializable {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
 }

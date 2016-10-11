@@ -2,7 +2,7 @@ package com.github.aarexer.address.controller;
 
 import com.github.aarexer.address.MainApp;
 import com.github.aarexer.address.model.Person;
-import com.github.aarexer.address.ui.UIError;
+import com.github.aarexer.address.ui.UI;
 import com.github.aarexer.address.util.DateUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,14 +42,14 @@ public class PersonController implements Initializable {
         if (selectedIndex >= 0) {
             tableView.getItems().remove(selectedIndex);
         } else {
-            UIError.showError("Нет доступной записи!", mainApp.getPrimaryStage());
+            UI.showError("Нет доступной записи!", mainApp.getPrimaryStage());
         }
     }
 
     @FXML
     private void handleNewButton() {
         Person person = new Person();
-        if (mainApp.showEditDialog(person))
+        if (UI.showEditDialog(person, mainApp.getPrimaryStage()))
             mainApp.getPersonData().add(person);
     }
 
@@ -58,9 +58,9 @@ public class PersonController implements Initializable {
         Person person = tableView.getSelectionModel().selectedItemProperty().get();
 
         if (person == null) {
-            UIError.showError("Вы никого не выбрали!", mainApp.getPrimaryStage());
+            UI.showError("Вы никого не выбрали!", mainApp.getPrimaryStage());
         } else {
-            mainApp.showEditDialog(person);
+            UI.showEditDialog(person, mainApp.getPrimaryStage());
         }
     }
 
