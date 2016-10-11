@@ -1,6 +1,5 @@
 package com.github.aarexer.address.controller;
 
-import com.github.aarexer.address.MainApp;
 import com.github.aarexer.address.model.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +20,6 @@ import java.util.ResourceBundle;
 public class StatisticBarController implements Initializable {
     private static final Logger logger = LogManager.getLogger();
 
-    private MainApp mainApp;
     @FXML
     private BarChart<String, Integer> barChart;
     @FXML
@@ -51,9 +49,4 @@ public class StatisticBarController implements Initializable {
 
         barChart.getData().add(series);
     }
-
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
 }

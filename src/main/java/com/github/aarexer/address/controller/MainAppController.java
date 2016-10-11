@@ -1,6 +1,7 @@
 package com.github.aarexer.address.controller;
 
 import com.github.aarexer.address.MainApp;
+import com.github.aarexer.address.ui.UI;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,7 +58,7 @@ public class MainAppController implements Initializable {
 
     @FXML
     private void showStatistic() {
-        mainApp.showStatisticBar();
+        UI.showStatisticBar(mainApp.getPrimaryStage(), mainApp.getPersonData());
     }
 
     private void saveAS() {

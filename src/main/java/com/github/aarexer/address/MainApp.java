@@ -159,26 +159,5 @@ public class MainApp extends Application {
         return primaryStage;
     }
 
-    public void showStatisticBar() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/view/StatisticBar.fxml"));
-            AnchorPane statBarPane = loader.load();
-            StatisticBarController statBarController = loader.getController();
-            statBarController.setMainApp(this);
-            statBarController.setDataToChart(personData);
-            Scene scene = new Scene(statBarPane);
 
-            Stage statStage = new Stage();
-
-            statStage.initOwner(primaryStage);
-            statStage.setScene(scene);
-            statStage.setTitle("Статистика!");
-            statStage.initModality(Modality.WINDOW_MODAL);
-            statStage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

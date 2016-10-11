@@ -3,6 +3,7 @@ package com.github.aarexer.address.ui;
 import com.github.aarexer.address.MainApp;
 import com.github.aarexer.address.controller.ErrorController;
 import com.github.aarexer.address.controller.PersonEditDialogController;
+import com.github.aarexer.address.controller.StatisticBarController;
 import com.github.aarexer.address.model.Person;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.List;
 
 public class UI {
     private static Logger logger = LogManager.getLogger();
@@ -71,5 +73,27 @@ public class UI {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void showStatisticBar(Stage primaryStage, List<Person> personData) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/view/StatisticBar.fxml"));
+            AnchorPane statBarPane = loader.load();
+            StatisticBarController statBarController = loader.getController();
+            statBarController.setDataToChart(personData);
+            Scene scene = new Scene(statBarPane);
+
+            Stage statStage = new Stage();
+
+            statStage.initOwner(primaryStage);
+            statStage.setScene(scene);
+            statStage.setTitle("Статистика!");
+            statStage.initModality(Modality.WINDOW_MODAL);
+            statStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
