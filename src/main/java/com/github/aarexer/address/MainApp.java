@@ -32,11 +32,7 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-
     private ObservableList<Person> personData = FXCollections.observableArrayList();
-
-    public MainApp() {
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -71,7 +67,7 @@ public class MainApp extends Application {
         //after init main window
         showPersonOverview();
 
-        File file = getPersonPath();
+        File file = getLastOpenedPersonsFile();
         if (file != null)
             loadDataFromFile(file);
     }
@@ -130,7 +126,11 @@ public class MainApp extends Application {
         launch();
     }
 
-    public File getPersonPath() {
+    /**
+     * Try to get last opened file.
+     * @return File if file with persons was opened in past, otherwise - null.
+     */
+    public File getLastOpenedPersonsFile() {
         Preferences preferences = Preferences.userNodeForPackage(MainApp.class);
         String filepath = preferences.get("filepath", null);
         if (filepath != null) {

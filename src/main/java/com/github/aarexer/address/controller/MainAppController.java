@@ -47,7 +47,7 @@ public class MainAppController implements Initializable {
 
     @FXML
     private void saveButton() {
-        File file = mainApp.getPersonPath();
+        File file = mainApp.getLastOpenedPersonsFile();
         if (file != null) {
             mainApp.saveDataToFile(file);
         } else {
