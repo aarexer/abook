@@ -89,35 +89,6 @@ public class MainApp extends Application {
         }
     }
 
-    public boolean showEditDialog(Person person) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/view/PersonEditDialog.fxml"));
-
-            AnchorPane editDialog = loader.load();
-            Scene scene = new Scene(editDialog);
-
-            Stage editDialogStage = new Stage();
-
-            PersonEditDialogController controller = loader.getController();
-            controller.setStage(editDialogStage);
-            controller.setPerson(person);
-            controller.setMainApp(this);
-
-            editDialogStage.setScene(scene);
-            editDialogStage.setTitle("Добавление персонажа");
-            editDialogStage.initOwner(primaryStage);
-            editDialogStage.initModality(Modality.WINDOW_MODAL);
-            editDialogStage.setResizable(false);
-            editDialogStage.showAndWait();
-
-            return controller.getOkClicked();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     public ObservableList<Person> getPersonData() {
         return personData;
     }
