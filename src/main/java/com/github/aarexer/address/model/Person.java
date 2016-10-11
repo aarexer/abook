@@ -20,15 +20,19 @@ public class Person {
     private ObjectProperty<LocalDate> birthday;
 
     public Person() {
-        this(null, null);
+        this.name = new SimpleStringProperty("");
+        this.surname = new SimpleStringProperty("");
+        this.city = new SimpleStringProperty("");
+        this.street = new SimpleStringProperty("");
+        this.birthday = new SimpleObjectProperty<>(LocalDate.now());
     }
 
-    public Person(String name, String surname) {
+    public Person(String name, String surname, String city, String street, LocalDate birthday) {
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);
-        this.birthday = new SimpleObjectProperty<>(LocalDate.of(1990, 12, 20));
-        this.street = new SimpleStringProperty("Pervomayskaya");
-        this.city = new SimpleStringProperty("Dolgoprudny");
+        this.city = new SimpleStringProperty(city);
+        this.street = new SimpleStringProperty(street);
+        this.birthday = new SimpleObjectProperty<>(birthday);
     }
 
     public String getName() {
